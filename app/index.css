@@ -1,0 +1,21 @@
+.character-ai-app {
+    display: flex;
+  }
+  
+  .side-bar-container2 {
+    height: 100vh;
+    background-color: #fafafa;
+  }
+  
+  .toggle-button-container2 {
+    background-color: #f4f4f5;
+    height: 100vh;
+  }
+  
+  
+  .app-container {
+    padding-bottom: 50px;
+    background-color: #f4f4f5;
+    overflow: auto;
+    height: 100vh;
+  }
