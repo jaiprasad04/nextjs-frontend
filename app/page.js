@@ -7,10 +7,8 @@ import TryThese from '@/components/TryThese'
 import Featured from '@/components/Featured'
 import Categories from '@/components/Categories'
 import TrySaying from '@/components/TrySaying'
-import SideBar from '@/components/SideBar'
-import SearchAndToggle from '@/components/SearchAndToggle'
-
-import './index.css'
+import SideBar from '@/components/Sidebar'
+import SearchBar from '@/components/SearchBar'
 
 const Home = () => {
   const [toggleButton, setToggleButton] = useState(false);
@@ -20,12 +18,12 @@ const Home = () => {
   };
 
   return (
-    <div className="character-ai-app">
-      <div className="side-bar-container2">
+    <div className="flex font-Onest box-border">
+      <div className="h-screen bg-gray-50">
         <SideBar toggleButton={toggleButton} hideSideBar={hideSideBar} />
       </div>
-      <div className="app-container">
-        <SearchAndToggle />
+      <div className="pb-16 bg-gray-100 overflow-auto h-screen">
+        <SearchBar />
         <ForYou /> 
         <TryThese />
         <Featured />
@@ -33,7 +31,6 @@ const Home = () => {
         <TrySaying />
       </div>
     </div>
-    
   )
 }
 

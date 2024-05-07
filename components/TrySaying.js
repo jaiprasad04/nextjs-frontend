@@ -1,6 +1,6 @@
 import { GoDotFill } from 'react-icons/go'
 
-import './index.css'
+// import './index.css'
 
 const trySaying = [
     {"image": "https://characterai.io/i/80/static/avatars/WhoWouldWin2.png?webp=true&anim=0",
@@ -61,35 +61,33 @@ const trySaying = [
 
 const TrySaying = () => {
   return (
-    <div className="try-saying-container">
-      <div className="try-saying-responsive-container">
-        <h1 className="try-saying-head">Try saying</h1>
-        <ul className="try-saying-list">
+    <div className="flex justify-center">
+      <div className="w-full max-w-[90%]">
+        <h1 className="text-gray-900 text-base font-semibold mt-6 mb-4">Try saying</h1>
+        <ul className="flex flex-nowrap items-center overflow-auto gap-2 pl-0">
           {trySaying.map((each, index) => (
-            <li key={index} className="try-saying-list-item">
-              <div className="try-saying-list-container">
-                <div className="try-saying-img">
-                  <img
-                    src={each.image}
-                    alt={`${each.name} image`}
-                    className="try-saying-img"
-                  />
-                </div>
+            <li key={index} className="bg-gray-200 flex flex-col w-96 p-3.5 shrink-0 rounded-lg cursor-pointer">
+              <div className="flex items-center mb-3">
+                <img
+                  src={each.image}
+                  alt={`${each.name} image`}
+                  className="rounded-full w-12 h-12 mr-2.5"
+                />
                 <div>
-                  <p className="try-saying-name">{each.name}</p>
-                  <div className="try-saying-names-container">
-                    <p className="try-saying-by">@{each.by}</p>
+                  <p className="text-sm text-gray-900 font-semibold">{each.name}</p>
+                  <div className="flex items-center gap-1 whitespace-nowrap">
+                    <p className="text-xs text-gray-600">@{each.by}</p>
                     <GoDotFill size={6} color="#28292d" />
-                    <p className="try-saying-chats">{each.chats} chats</p>
+                    <p className="text-sm text-gray-800">{each.chats} chats</p>
                     <GoDotFill size={6} color="#28292d" />
-                    <p className="try-saying-likes">{each.likes} likes</p>
+                    <p className="text-sm text-gray-800">{each.likes} likes</p>
                   </div>
                 </div>
               </div>
               <div>
-                <p className="try-saying-questions">{each.questions1}</p>
-                <p className="try-saying-questions">{each.questions2}</p>
-                <p className="try-saying-questions">{each.questions3}</p>
+                <p className="bg-gray-300 mb-1 p-2 rounded-lg whitespace-nowrap text-sm hover:bg-gray-400">{each.questions1}</p>
+                <p className="bg-gray-300 mb-1 p-2 rounded-lg whitespace-nowrap text-sm hover:bg-gray-400">{each.questions2}</p>
+                <p className="bg-gray-300 mb-1 p-2 rounded-lg whitespace-nowrap text-sm hover:bg-gray-400">{each.questions3}</p>
               </div>
             </li>
           ))}

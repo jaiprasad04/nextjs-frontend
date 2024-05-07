@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 
 const tryThese = [
     { type: "Practice a new language",
@@ -37,16 +37,16 @@ const tryThese = [
 
 const TryThese = () => {
     return (
-        <div className="try-these-container">
-            <div className="try-these-responsive-container">
-                <h1 className="try-these-head">Try these</h1>
-                <ul className="try-these-list">
+        <div className="flex justify-center">
+            <div className="w-full max-w-[90%]">
+                <h1 className="text-gray-900 text-base font-semibold mt-6 mb-4">Try these</h1>
+                <ul className="flex flex-col h-40 flex-wrap overflow-auto gap-2 list-none">
                     {tryThese.map((each, index) => (
-                        <li key={index} className="try-these-list-item">
-                            <img src={each.image} className="try-these-image" alt='' />
-                            <div className="try-these-names">
-                                <p className="try-these-type">{each.type}</p>
-                                <p className="try-these-with">with {each.with}</p>
+                        <li key={index} className="bg-gray-200 flex items-center w-72 p-3 rounded-xl flex-shrink-0 cursor-pointer hover:bg-gray-300">
+                            <img src={each.image} className="rounded-full w-12 h-13" alt='' />
+                            <div className="ml-2.5">
+                                <p className="text-sm font-medium text-gray-700">{each.type}</p>
+                                <p className="text-xs text-gray-600">with {each.with}</p>
                             </div>
                         </li>
                     ))}

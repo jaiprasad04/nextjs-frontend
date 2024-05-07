@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from 'react';
 
-import CategoryItems from '../CategoryItems';
-import './index.css';
+import CategoryItems from './CategoryItems';
+// import './index.css';
 
 import { FaRegComment } from 'react-icons/fa';
 import { AiOutlineLike } from 'react-icons/ai';
@@ -42,7 +42,7 @@ const Categories = () => {
         const getCharactersDetails = async () => {
             setApiStatus(apiStatusConstants.inProgress);
 
-            const apiUrl = 'https://dev-zhzc5vrrcvlv2jg.api.raw-labs.com/mock/2';
+            const apiUrl = 'https://ap-south-1.aws.data.mongodb-api.com/app/reactjs_quizapp-tjtlm/endpoint/getdata';
             const options = {
                 method: 'GET',
             };
@@ -51,12 +51,16 @@ const Categories = () => {
 
             if (response.ok) {
                 const data = await response.json();
+                // console.log(data)
                 setCharactersList(data);
                 setApiStatus(apiStatusConstants.success);
             }
+            
+        
         };
 
         getCharactersDetails();
+
     }, []);
 
     const clickTabItem = (tabId) => {
@@ -66,8 +70,8 @@ const Categories = () => {
     const categoryWise = charactersList.filter((each) => each.category === activeTabId);
 
     return (
-        <div className="category-container">
-            <ul className="category-list">
+        <div className="flex flex-col items-center">
+            <ul className="w-full max-w-[90%] flex items-center whitespace-nowrap gap-2 mt-8 mb-3 overflow-auto">
                 {tabsList.map((each) => (
                     <CategoryItems
                         key={each.tabId}
@@ -78,29 +82,29 @@ const Categories = () => {
                 ))}
             </ul>
             {apiStatus === apiStatusConstants.inProgress ? (
-                <div className="box">
-                    <div className="box1"></div>
+                <div className="flex items-center justify-center mt-6">
+                    <p className="text-black">Loading...</p>
                 </div>
             ) : (
-                <ul className="character-list">
+                <ul className="w-full max-w-[90%] flex flex-nowrap items-center overflow-auto gap-2 pl-0">
                     {categoryWise.map((each, index) => (
-                        <li key={index} className="character-list-item">
-                            <img src={each.image} className="character-image" alt='' />
-                            <div className="character-details-container">
+                        <li key={index} className="bg-gray-200 flex w-72 h-32 p-2 rounded-2xl flex-shrink-0 cursor-pointer hover:bg-gray-300">
+                            <img src={each.image} className="h-28 w-24 object-cover rounded-2xl" alt='' />
+                            <div className="ml-2.5 flex flex-col justify-between">
                                 <div>
-                                    <p className="character-name">{each.name}</p>
-                                    <p className="character-by">By @{each.by}</p>
-                                    <p className="character-description">{each.description}</p>
+                                    <p className="text-base font-semibold text-gray-900">{each.name}</p>
+                                    <p className="text-xs text-gray-600">By @{each.by}</p>
+                                    <p className="text-sm text-gray-800">{each.description}</p>
                                 </div>
-                                <div className="comments-section">
-                                    <div className="comments-section">
+                                <div className="flex items-center mr-3 font-semibold">
+                                    <div className="flex items-center mr-3 font-semibold">
                                         <FaRegComment color='#666770' size={12} />
-                                        <p className="character-comments">{each.comments}</p>
+                                        <p className="text-xs flex items-center text-gray-600 ml-1">{each.comments}</p>
                                     </div>
                                     {each.likes && (
-                                        <div className="comments-section">
+                                        <div className="flex items-center mr-3 font-semibold">
                                             <AiOutlineLike color='#666770' size={12} />
-                                            <p className="character-comments">{each.likes}</p>
+                                            <p className="text-xs flex items-center text-gray-600 ml-1">{each.likes}</p>
                                         </div>
                                     )}
                                 </div>

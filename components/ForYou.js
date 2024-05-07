@@ -1,6 +1,6 @@
 import { FaRegComment } from "react-icons/fa";
 
-import './index.css'
+// import './index.css'
 
 const forYouData = [
     {image : "https://characterai.io/i/200/static/avatars/uploaded/2023/12/14/ghismzzY5xPr7czlmR7KHSt2jBIP3tzL6Q6yLX9zmxE.webp?webp=true&anim=0",
@@ -111,27 +111,27 @@ const forYouData = [
     description: "She is indian girl. 16years old girl",
     comments: "868.9k",
    },
- ];
+];
 
 
 const ForYou = () => {
     return (
-        <div className="for-you-container">
-            <div className="for-you-responsive-container">
-                <h1 className="for-you-head">For you</h1>
-                <ul className="for-you-list">
+        <div className="flex justify-center">
+            <div className="w-full max-w-[90%]">
+                <h1 className="text-gray-900 text-base font-semibold mt-6 mb-4">For you</h1>
+                <ul className="flex flex-nowrap items-center overflow-auto gap-2 pl-0">
                     {forYouData.map((each, index) => (
-                        <li key={index} className="for-you-list-item">
-                            <img src={each.image} className="for-you-img" alt={each.name} />
-                            <div className="for-you-details-container">
+                        <li key={index} className="bg-gray-200 flex w-72 h-32 p-2 rounded-2xl flex-shrink-0 cursor-pointer hover:bg-gray-300">
+                            <img src={each.image} className="h-28 w-24 object-cover rounded-2xl" alt={each.name} />
+                            <div className="ml-4 flex flex-col justify-between">
                                 <div>
-                                    <h1 className="for-you-name">{each.name}</h1>
-                                    <p className="for-you-by">By @{each.byPerson}</p>
-                                    <p className="for-you-description">{each.description}</p>
+                                    <h1 className="text-sm font-semibold text-gray-900">{each.name}</h1>
+                                    <p className="text-xs text-gray-600">By @{each.byPerson}</p>
+                                    <p className="text-sm text-gray-700">{each.description}</p>
                                 </div>
-                                <div className="comments-section">
+                                <div className="flex items-center">
                                     <FaRegComment color="#666770" size={12} />
-                                    <p className="for-you-comments">{each.comments}</p>
+                                    <p className="text-xs flex items-center text-gray-600 ml-1">{each.comments}</p>
                                 </div>
                             </div>
                         </li>
