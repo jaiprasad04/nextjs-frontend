@@ -1,5 +1,3 @@
-// import './index.css';
-
 const CategoryItems = (props) => {
     const { data, clickTabItem, isActive } = props
     const { tabId, displayText } = data;

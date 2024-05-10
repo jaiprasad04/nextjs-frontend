@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import ForYou from '@/components/ForYou'
 import TryThese from '@/components/TryThese'
@@ -12,6 +12,20 @@ import SearchBar from '@/components/SearchBar'
 
 const Home = () => {
   const [toggleButton, setToggleButton] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setToggleButton(window.innerWidth > 1023 ? false : true);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const hideSideBar = () => {
     setToggleButton(prev => !prev);

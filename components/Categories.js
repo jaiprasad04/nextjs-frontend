@@ -1,9 +1,7 @@
-"use client"
-
 import { useState, useEffect } from 'react';
 
 import CategoryItems from './CategoryItems';
-// import './index.css';
+import LoadingFiles from './LoadingFiles';
 
 import { FaRegComment } from 'react-icons/fa';
 import { AiOutlineLike } from 'react-icons/ai';
@@ -36,23 +34,21 @@ const apiStatusConstants = {
 const Categories = () => {
     const [activeTabId, setActiveTabId] = useState(tabsList[0].tabId);
     const [charactersList, setCharactersList] = useState([]);
-    const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial);
+    const [apiStatus, setApiStatus] = useState(apiStatusConstants.inProgress);
 
     useEffect(() => {
         const getCharactersDetails = async () => {
-            setApiStatus(apiStatusConstants.inProgress);
-
-            const apiUrl = 'https://ap-south-1.aws.data.mongodb-api.com/app/reactjs_quizapp-tjtlm/endpoint/getdata';
+            const apiUrl = `https://ap-south-1.aws.data.mongodb-api.com/app/reactjs_quizapp-tjtlm/endpoint/getdata?category=${activeTabId}`;
             const options = {
                 method: 'GET',
             };
 
-            const response = await fetch(apiUrl, options);
+            const response5 = await fetch(apiUrl, options);
 
-            if (response.ok) {
-                const data = await response.json();
+            if (response5.ok) {
+                const data5 = await response5.json();
                 // console.log(data)
-                setCharactersList(data);
+                setCharactersList(data5);
                 setApiStatus(apiStatusConstants.success);
             }
             
@@ -61,13 +57,11 @@ const Categories = () => {
 
         getCharactersDetails();
 
-    }, []);
+    }, [activeTabId]);
 
     const clickTabItem = (tabId) => {
         setActiveTabId(tabId);
     };
-
-    const categoryWise = charactersList.filter((each) => each.category === activeTabId);
 
     return (
         <div className="flex flex-col items-center">
@@ -82,13 +76,13 @@ const Categories = () => {
                 ))}
             </ul>
             {apiStatus === apiStatusConstants.inProgress ? (
-                <div className="flex items-center justify-center mt-6">
-                    <p className="text-black">Loading...</p>
+                <div className="w-full max-w-[90%]">
+                    <LoadingFiles />
                 </div>
             ) : (
                 <ul className="w-full max-w-[90%] flex flex-nowrap items-center overflow-auto gap-2 pl-0">
-                    {categoryWise.map((each, index) => (
-                        <li key={index} className="bg-gray-200 flex w-72 h-32 p-2 rounded-2xl flex-shrink-0 cursor-pointer hover:bg-gray-300">
+                    {charactersList.map((each, index) => (
+                        <li key={index} className="bg-gray-200 flex w-80 h-32 p-2 rounded-2xl flex-shrink-0 cursor-pointer hover:bg-gray-300">
                             <img src={each.image} className="h-28 w-24 object-cover rounded-2xl" alt='' />
                             <div className="ml-2.5 flex flex-col justify-between">
                                 <div>
