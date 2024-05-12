@@ -47,7 +47,6 @@ const Categories = () => {
 
             if (response5.ok) {
                 const data5 = await response5.json();
-                // console.log(data)
                 setCharactersList(data5);
                 setApiStatus(apiStatusConstants.success);
             }

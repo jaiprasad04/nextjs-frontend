@@ -1,12 +1,8 @@
-import { useState } from 'react';
-
 import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
 import { RiCompassFill, RiVoiceprintFill } from 'react-icons/ri';
 import { BiSolidUserPlus } from 'react-icons/bi';
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
-
-import LoginPage from './LoginPage';
 
 const tryThese = [
     {with: "HyperGlot",
@@ -27,26 +23,6 @@ const tryThese = [
 ]
 
 const SideBar = ({ hideSideBar, toggleButton }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
- 
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  }
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  }
-
-  const openCreateModal = () => {
-    setCreateModalIsOpen(true);
-  }
-
-  const closeCreateModal = () => {
-    setCreateModalIsOpen(false);
-  }
-
   const hide = toggleButton ? 'w-0 overflow-hidden' : 'w-64'
 
   return (
@@ -93,11 +69,6 @@ const SideBar = ({ hideSideBar, toggleButton }) => {
             </ul>
           </div>
         </div>
-        <div className="w-full flex flex-col">
-          <button type="button" onClick={openModal} className="w-full text-sm border border-gray-400 rounded-3xl p-2 mb-3 hover:bg-gray-200">Sign in</button>
-          <button type="button" onClick={openCreateModal} className="w-full text-sm bg-black text-white border rounded-3xl p-2 hover:bg-gray-800">Sign up</button>
-        </div>
-        <LoginPage modalIsOpen={modalIsOpen} createModalIsOpen={createModalIsOpen} closeModal={closeModal} closeCreateModal={closeCreateModal} />
       </div>
     </div>
   );
